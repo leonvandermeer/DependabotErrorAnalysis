@@ -1,0 +1,53 @@
+# This workflow will build On My Route
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: Build
+
+on:
+  push:
+    branches:
+      - '**'
+jobs:
+  build:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0 # avoid shallow clone so nbgv can do its work.
+    - uses: actions/cache@v4 # https://github.com/actions/cache/blob/main/examples.md#c---nuget
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-
+    - name: Display .NET information
+      run: dotnet --info
+    - name: Import Code Signing Certificate
+      env:
+        CERTIFICATE: ${{ secrets.CERTIFICATE }}
+        CERTIFICATEPASSWORD: ${{ secrets.CERTIFICATEPASSWORD }}
+      run: |
+        if ($env:CERTIFICATE -or $env:CERTIFICATEPASSWORD) {
+            Set-Content Certificate.pfx ([Convert]::FromBase64String($env:CERTIFICATE)) -AsByteStream
+            Import-PfxCertificate Certificate.pfx Cert:\CurrentUser\My -Password (ConvertTo-SecureString $env:CERTIFICATEPASSWORD -AsPlainText -Force)
+            del Certificate.pfx
+        } else {
+            'Import Code Signing Certificate skipped because secrets are not available.'
+        }
+    - name: Restore, Build
+      run: dotnet build -c Release -bl:build.binlog
+    - name: Publish
+      run: dotnet publish --no-restore --no-build --sc VOnMyRoute -bl:publish.binlog
+    - name: Delete Code Signing Certificate
+      if: ${{ always() }}
+      run: dir -Recurse -Force Cert:\ -Include F97E84A908EA73EAB620C03585520A3D1332BDEB, 3EDE07E2FEA63C436BC67A9422218D90690C3375 | % { del $_.PSPath -DeleteKey -Verbose }
+    - name: Test
+      run: dotnet test -c Release --no-build --verbosity normal
+    - name: Upload log files
+      if: ${{ success() || failure() }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: log
+        path: '**/*.binlog'

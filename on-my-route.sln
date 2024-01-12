@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{9B7F2668-2005-4BEE-98CD-CA91A189FEE9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A3F0A03C-9113-4FCD-A730-3B07A857EA19}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{CB9A8F6C-C192-4094-BE9F-B2692C63C241}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build.yml = .github\workflows\build.yml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VOnMyRoute", "VOnMyRoute\VOnMyRoute.csproj", "{4234677D-1796-4682-9513-B4135838E188}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Updates.Updates", "Updates.Updates\Updates.Updates.csproj", "{E669B868-E1CA-4C6E-9E1E-FB99F67D710E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4234677D-1796-4682-9513-B4135838E188}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4234677D-1796-4682-9513-B4135838E188}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4234677D-1796-4682-9513-B4135838E188}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4234677D-1796-4682-9513-B4135838E188}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E669B868-E1CA-4C6E-9E1E-FB99F67D710E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E669B868-E1CA-4C6E-9E1E-FB99F67D710E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E669B868-E1CA-4C6E-9E1E-FB99F67D710E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E669B868-E1CA-4C6E-9E1E-FB99F67D710E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9B7F2668-2005-4BEE-98CD-CA91A189FEE9} = {A3F0A03C-9113-4FCD-A730-3B07A857EA19}
+		{CB9A8F6C-C192-4094-BE9F-B2692C63C241} = {9B7F2668-2005-4BEE-98CD-CA91A189FEE9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {397CE8ED-B5D3-48E8-A347-ED83650DCD90}
+	EndGlobalSection
+EndGlobal

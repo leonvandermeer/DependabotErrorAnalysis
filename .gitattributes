@@ -1,0 +1,5 @@
+# Treat all files as binary:
+* -text
+
+# Do not enable CR-LF conversion:
+# * text=auto
